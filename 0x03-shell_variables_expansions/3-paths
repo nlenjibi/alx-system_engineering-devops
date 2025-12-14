@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$PATH" | awk -F: $'BEGIN{c=0\ne=0}\n{for(i=1;i<=NF;i++)\n if($i=="")\n  {if(!e)\n    {e=1\n     c++}}\n else\n  {e=0\n   c++}}\nEND{print c}'
+echo "$PATH" | perl -pe 's/::+/:.:/g' | tr ':' '\n' | grep -v '^$' | wc -l
